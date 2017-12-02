@@ -1,0 +1,3 @@
+[submodule "partly_solid_bicycle"]
+	path = partly_solid_bicycle
+	url = https://github.com/AlexeyBond/partly-solid-bicycle
