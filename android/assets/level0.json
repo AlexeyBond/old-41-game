@@ -20,18 +20,100 @@
       "components": {
         "body": { "bodyType": "StaticBody" },
         "circle fixture": { "radius": 10, "sensor": true },
-        "mmp": {}
+        "mmp": {},
+        "sprite": {
+          "sprite": "sprites/mountpoint",
+          "scale": 0.2,
+          "pass": "game-background"
+        }
       }
     },
     "box": {
       "components": {
         "body": { "bodyType": "DynamicBody", "noRotation": true },
-        "box fixture": { "size": [20, 20], "density": 0.0001 },
+        "box fixture": { "size": [50, 50], "density": 0.0001 },
         "mmount": {}
+      }
+    },
+    "source-box-1": {
+      "inherit": ["box"],
+      "components": {
+        "sprite": {
+          "sprite": "sprites/source",
+          "scale": 0.55
+        },
+        "qem": {
+          "period": 5,
+          "quant": {
+            "components": {
+              "q": {
+                "velocity": [200, 0],
+
+                "frequency": 0.1,
+
+                "initialLength": 10,
+                "targetLength": 200
+              }
+            }
+          }
+        }
+      }
+    },
+    "turn-box": {
+      "inherit": ["box"],
+      "components": {
+        "sprite": {
+          "sprite": "sprites/turn",
+          "scale": 0.55
+        },
+        "qt": {
+          "points": [10, 10, -10, -10]
+        },
+        "qe": {
+          "type": "qe-turn"
+        }
+      }
+    },
+    "black-box": {
+      "inherit": ["box"],
+      "components": {
+        "sprite": {
+          "sprite": "sprites/black",
+          "scale": 0.55
+        },
+        "qt": {
+          "points": [10, 10, -10, -10]
+        },
+        "qe": {
+          "type": "qe-disp"
+        }
+      }
+    },
+    "target-box": {
+      "inherit": ["box"],
+      "components": {
+        "sprite": {
+          "sprite": "sprites/target-undone",
+          "scale": 0.55
+        },
+        "qt": {
+          "points": [10, 10, -10, -10]
+        },
+        "qe": {
+          "type": "qtgt"
+        }
       }
     }
   },
   "entities": [
+    {
+      "components": {
+        "background loop": {
+          "pass": "game-background-loop",
+          "texture": "sprites/backloop.png"
+        }
+      }
+    },
     {
       "inherit": ["camera"],
       "components": {
@@ -108,25 +190,6 @@
         }
       }
     },
-    {
-      "components": {
-        "qem": {
-          "period": 5,
-          "quant": {
-            "components": {
-              "q": {
-                "velocity": [100, 0],
-
-                "frequency": 0.2,
-
-                "initialLength": 10,
-                "targetLength": 100
-              }
-            }
-          }
-        }
-      }
-    },
 
 
 
@@ -156,9 +219,30 @@
     },
 
     {
-      "inherit": ["box"],
+      "inherit": ["source-box-1"],
       "properties": {
         "position": ["0", "0"]
+      }
+    },
+
+    {
+      "inherit": ["turn-box"],
+      "properties": {
+        "position": ["0", "100"]
+      }
+    },
+
+    {
+      "inherit": ["black-box"],
+      "properties": {
+        "position": ["0", "200"]
+      }
+    },
+
+    {
+      "inherit": ["target-box"],
+      "properties": {
+        "position": ["-100", "200"]
       }
     }
   ]

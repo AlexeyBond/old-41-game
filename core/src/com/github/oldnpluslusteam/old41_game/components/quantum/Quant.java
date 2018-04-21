@@ -32,6 +32,7 @@ public class Quant implements Component, RenderComponent {
     private Vector2 velocity = new Vector2();
 
     private Vector2 tmp = new Vector2();
+    private Vector2 tmp2 = new Vector2();
 
     private Quant(
             float initialLength,
@@ -76,6 +77,11 @@ public class Quant implements Component, RenderComponent {
                 return false;
             }
 
+            if (isDisposing && segments.size == 1) {
+                entity.destroy();
+                return false;
+            }
+
             float dt = event.get();
 
             ttl -= dt;
@@ -84,28 +90,25 @@ public class Quant implements Component, RenderComponent {
 
             float cutLength;
 
+            Segment first = segments.first();
+
+            tmp.set(velocity).scl(dt);
+
+            phase += tmp.len();
+
+            tmp.add(first.head);
+
             if (!isDisposing) {
-                Segment first = segments.first();
-
-                tmp.set(velocity).scl(dt);
-
-                phase += tmp.len();
-
-                tmp.add(first.head);
-
                 quantumSystem.testQuant(first.head, tmp, Quant.this);
-
-                first.head.set(tmp);
-
-                position.set(first.head);
-
-                cutLength = -targetLength;
-
-                for (Segment segment : segments) cutLength += segment.head.dst(segment.tail);
-            } else {
-                float l = velocity.len();
-                cutLength = l * dt;
             }
+
+            first.head.set(tmp);
+
+            position.set(first.head);
+
+            cutLength = -targetLength;
+
+            for (Segment segment : segments) cutLength += segment.head.dst(segment.tail);
 
             while (cutLength > 0) {
                 Segment last;
@@ -137,11 +140,17 @@ public class Quant implements Component, RenderComponent {
         Vector2 head = new Vector2();
         Vector2 tail = new Vector2();
         float freq = frequency;
+        boolean visible = true;
 
         {
             Vector2 pos = position.ref();
             head.set(pos);
             tail.set(pos);
+        }
+
+        Segment visible(boolean vis) {
+            this.visible = vis;
+            return this;
         }
     }
 
@@ -173,11 +182,12 @@ public class Quant implements Component, RenderComponent {
 
         Vector2 tmp = this.tmp;
 
-        float prevA = 0;
-        float prevX = position.ref().x;
-        float prevY = position.ref().y;
-
         for (Segment segment : segments) {
+            if (!segment.visible) {
+                phase -= segment.head.dst(segment.tail);
+                continue;
+            }
+
             tmp.set(segment.tail).sub(segment.head);
             float l = tmp.len();
             float step = 1.0f / l;
@@ -185,7 +195,12 @@ public class Quant implements Component, RenderComponent {
 
             if (l < 1.0f) continue;
 
-            for (float f = 0; f < 1.0f; f += step) {
+            float f;
+            float prevA = 0;
+            float prevX = segment.head.x;
+            float prevY = segment.head.y;
+
+            for (f = 0; f < 1.0f; f += step) {
                 float a0 = 10f;
                 float a1 = phaseEnergy(phase, segment.freq);
 
@@ -221,17 +236,29 @@ public class Quant implements Component, RenderComponent {
 
                 phase -= 1.0f;
             }
+
+            phase += (f - 1.0f) * l;
         }
     }
 
     public void dispose() {
+        segments.addFirst(new Segment().visible(false));
         isDisposing = true;
     }
 
-    public void redirect(Vector2 direction) {
-        segments.addFirst(new Segment());
-
+    public void redirect(Vector2 direction, Vector2 posHint) {
         velocity.setAngle(direction.angle());
+
+        Segment segment = new Segment();
+
+        if (null != posHint) {
+            segment.tail.set(posHint);
+            segment.tail.add(tmp2.set(velocity).scl(MathUtils.FLOAT_ROUNDING_ERROR * 10f));
+            segment.head.set(segment.tail);
+            position.set(segment.head);
+        }
+
+        segments.addFirst(segment);
     }
 
     public Vector2 getVelocity() {

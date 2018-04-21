@@ -27,6 +27,7 @@ public class StartupScreenModule implements Module {
         map.put("qe-turn", QEffectTurn.Decl.class);
         map.put("qe-disp", QEffectDispose.Decl.class);
         map.put("qem", QEmitter.Decl.class);
+        map.put("qtgt", QTarget.Decl.class);
 
         map.put("mmc", MouseController.Decl.class);
         map.put("mmount", MountableComponent.Decl.class);
