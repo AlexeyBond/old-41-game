@@ -2,6 +2,7 @@ package com.github.oldnpluslusteam.old41_game;
 
 import com.github.alexeybond.partly_solid_bicycle.application.Application;
 import com.github.alexeybond.partly_solid_bicycle.application.modules.DefaultLoadingScreenModule;
+import com.github.alexeybond.partly_solid_bicycle.application.modules.LoadProgressManagerModule;
 import com.github.alexeybond.partly_solid_bicycle.drawing.modules.GlobalDrawingState;
 import com.github.alexeybond.partly_solid_bicycle.drawing.modules.GlobalParticlePool;
 import com.github.alexeybond.partly_solid_bicycle.drawing.modules.ShaderLoader;
@@ -22,6 +23,7 @@ public class TheGame extends Application {
 	protected Modules setupModules(Modules modules) {
 		modules = super.setupModules(modules);
 
+		modules.add(new LoadProgressManagerModule());
 		modules.add(new ResourceManagement());
 		modules.add(new GlobalDrawingState());
 		modules.add(new GlobalParticlePool());
