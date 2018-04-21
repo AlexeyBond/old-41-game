@@ -1,5 +1,51 @@
 {
+  "classes": {
+    "camera": {
+      "components": {
+        "camera": {
+          "pass": "setup-main-camera",
+          "globalAlias": "mainCamera"
+        },
+        "tag": {
+          "tag": "camera"
+        }
+      },
+      "properties": {
+        "zoomFunction": ["fixed diagonal zoom function", "1300"],
+        "position": ["0", "0"]
+      }
+    },
+
+    "mountpoint": {
+      "components": {
+        "body": { "bodyType": "StaticBody" },
+        "circle fixture": { "radius": 10, "sensor": true },
+        "mmp": {}
+      }
+    },
+    "box": {
+      "components": {
+        "body": { "bodyType": "DynamicBody", "noRotation": true },
+        "box fixture": { "size": [20, 20], "density": 0.0001 },
+        "mmount": {}
+      }
+    }
+  },
   "entities": [
+    {
+      "inherit": ["camera"],
+      "components": {
+        "physics debugger": {
+          "camera": "mainCamera"
+        },
+        "mmc": {
+          "tolerance": 10,
+          "frequency": 100,
+          "damping": 0,
+          "force": 100000
+        }
+      }
+    },
     {
       "components": {
         "q": {
@@ -11,6 +57,108 @@
           "initialLength": 100,
           "targetLength": 200
         }
+      }
+    },
+    {
+      "components": {
+        "qt": {
+          "points": [10, 10, -10, -10]
+        },
+        "qe": {
+          "type": "qe-turn"
+        }
+      },
+      "properties": {
+        "position": ["200", "0"]
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+
+    {
+      "components": {
+        "body": { "bodyType": "StaticBody" },
+        "bottom": {
+          "type": "box fixture",
+          "size": [1000, 20],
+          "center": [0, -200]
+        },
+        "top": {
+          "type": "box fixture",
+          "size": [1000, 20],
+          "center": [0, 200]
+        },
+        "left": {
+          "type": "box fixture",
+          "size": [20, 1000],
+          "center": [-400, 0]
+        },
+        "right": {
+          "type": "box fixture",
+          "size": [10, 1000],
+          "center": [400, 0]
+        }
+      }
+    },
+    {
+      "components": {
+        "qem": {
+          "period": 5,
+          "quant": {
+            "components": {
+              "q": {
+                "velocity": [100, 0],
+
+                "frequency": 0.2,
+
+                "initialLength": 10,
+                "targetLength": 100
+              }
+            }
+          }
+        }
+      }
+    },
+
+
+
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-200", "0"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-200", "100"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-300", "0"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-300", "100"]
+      }
+    },
+
+    {
+      "inherit": ["box"],
+      "properties": {
+        "position": ["0", "0"]
       }
     }
   ]

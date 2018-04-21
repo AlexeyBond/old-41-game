@@ -18,27 +18,42 @@ import com.github.alexeybond.partly_solid_bicycle.util.event.helpers.Subscriptio
 import com.github.alexeybond.partly_solid_bicycle.util.event.props.FloatProperty;
 import com.github.alexeybond.partly_solid_bicycle.util.event.props.Vec2Property;
 
+import java.util.NoSuchElementException;
+
 import static java.lang.Math.exp;
 
 public class Quant implements Component, RenderComponent {
     private Vec2Property position;
+    private Entity entity;
     private RenderSystem renderSystem;
-    private float initialLength, targetLength, phase, frequency;
+    private QuantumSystem quantumSystem;
+    private float initialLength, targetLength, phase, frequency, ttl;
     private boolean isDisposing = false;
     private Vector2 velocity = new Vector2();
 
     private Vector2 tmp = new Vector2();
 
-    private Quant(float initialLength, float targetLength, float phase, float frequency, Vector2 velocity) {
+    private Quant(
+            float initialLength,
+            float targetLength,
+            float phase,
+            float frequency,
+            float ttl,
+            Vector2 velocity) {
         this.initialLength = initialLength;
         this.targetLength = targetLength;
         this.frequency = frequency;
         this.phase = phase;
+        this.ttl = ttl;
         this.velocity.set(velocity);
     }
 
-    private float phaseEnergy(float phase) {
+    private float phaseEnergy(float phase, float frequency) {
         return (0.5f * MathUtils.sin(MathUtils.PI * phase * frequency) + 0.5f);
+    }
+
+    private float phaseEnergy(float phase) {
+        return phaseEnergy(phase, frequency);
     }
 
     private Queue<Segment> segments = new Queue<Segment>();
@@ -47,7 +62,10 @@ public class Quant implements Component, RenderComponent {
         @Override
         public boolean onTriggered(FloatProperty event) {
             if (0 == segments.size) {
-                if (isDisposing) { /* ... */ }
+                if (isDisposing) {
+                    entity.destroy();
+                    return false;
+                }
 
                 Segment segment = new Segment();
                 segment.head.set(position.ref());
@@ -60,24 +78,42 @@ public class Quant implements Component, RenderComponent {
 
             float dt = event.get();
 
-            if (isDisposing) { /* ... */ }
+            ttl -= dt;
 
-            Segment first = segments.first();
+            if (ttl <= 0) dispose();
 
-            tmp.set(velocity).scl(dt);
+            float cutLength;
 
-            phase += tmp.len();
+            if (!isDisposing) {
+                Segment first = segments.first();
 
-            first.head.add(tmp);
+                tmp.set(velocity).scl(dt);
 
-            position.set(first.head);
+                phase += tmp.len();
 
-            float cutLength = -targetLength;
+                tmp.add(first.head);
 
-            for (Segment segment : segments) cutLength += segment.head.dst(segment.tail);
+                quantumSystem.testQuant(first.head, tmp, Quant.this);
+
+                first.head.set(tmp);
+
+                position.set(first.head);
+
+                cutLength = -targetLength;
+
+                for (Segment segment : segments) cutLength += segment.head.dst(segment.tail);
+            } else {
+                float l = velocity.len();
+                cutLength = l * dt;
+            }
 
             while (cutLength > 0) {
-                Segment last = segments.last();
+                Segment last;
+                try {
+                    last = segments.last();
+                } catch (NoSuchElementException e) {
+                    break;
+                }
 
                 float l = last.head.dst(last.tail);
 
@@ -100,10 +136,19 @@ public class Quant implements Component, RenderComponent {
     private class Segment {
         Vector2 head = new Vector2();
         Vector2 tail = new Vector2();
+        float freq = frequency;
+
+        {
+            Vector2 pos = position.ref();
+            head.set(pos);
+            tail.set(pos);
+        }
     }
 
     @Override
     public void onConnect(Entity entity) {
+        this.entity = entity;
+        quantumSystem = entity.game().systems().get("q");
         renderSystem = entity.game().systems().get("render");
         renderSystem.addToPass("q", this);
 
@@ -128,7 +173,6 @@ public class Quant implements Component, RenderComponent {
 
         Vector2 tmp = this.tmp;
 
-
         float prevA = 0;
         float prevX = position.ref().x;
         float prevY = position.ref().y;
@@ -143,7 +187,7 @@ public class Quant implements Component, RenderComponent {
 
             for (float f = 0; f < 1.0f; f += step) {
                 float a0 = 10f;
-                float a1 = phaseEnergy(phase);
+                float a1 = phaseEnergy(phase, segment.freq);
 
                 float p = (this.phase - phase) * (100f / targetLength);
                 float a2 = (float) exp(-(p*0.1f)) * p * p * 0.02f;
@@ -180,10 +224,38 @@ public class Quant implements Component, RenderComponent {
         }
     }
 
+    public void dispose() {
+        isDisposing = true;
+    }
+
+    public void redirect(Vector2 direction) {
+        segments.addFirst(new Segment());
+
+        velocity.setAngle(direction.angle());
+    }
+
+    public Vector2 getVelocity() {
+        return velocity;
+    }
+
+    public float getEnergy() {
+        return phaseEnergy(phase);
+    }
+
+    public float getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(float frequency) {
+        this.frequency = frequency;
+        segments.addFirst(new Segment());
+    }
+
     public static class Decl implements ComponentDeclaration {
         public float initialLength, targetLength, phase, frequency = 0.1f;
         public float[] velocity = null;
         public float vx = 1, vy;
+        public float ttl = 10;
         private Vector2 vv;
 
         @Override
@@ -193,6 +265,7 @@ public class Quant implements Component, RenderComponent {
                     targetLength,
                     phase,
                     frequency,
+                    ttl,
                     vv = DeclUtils.readVector(vv, velocity, vx, vy)
             );
         }
