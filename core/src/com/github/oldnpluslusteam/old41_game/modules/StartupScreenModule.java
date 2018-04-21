@@ -1,9 +1,9 @@
-package com.github.oldnpluslusteam.old39_game.modules;
+package com.github.oldnpluslusteam.old41_game.modules;
 
 import com.github.alexeybond.partly_solid_bicycle.ioc.IoC;
 import com.github.alexeybond.partly_solid_bicycle.ioc.modules.Module;
 import com.github.alexeybond.partly_solid_bicycle.ioc.strategy.Singleton;
-import com.github.oldnpluslusteam.old39_game.screens.StartupScreen;
+import com.github.oldnpluslusteam.old41_game.screens.StartupScreen;
 
 public class StartupScreenModule implements Module {
     @Override

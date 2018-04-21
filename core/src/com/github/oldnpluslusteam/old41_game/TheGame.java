@@ -1,4 +1,4 @@
-package com.github.oldnpluslusteam.old39_game;
+package com.github.oldnpluslusteam.old41_game;
 
 import com.github.alexeybond.partly_solid_bicycle.application.Application;
 import com.github.alexeybond.partly_solid_bicycle.application.modules.DefaultLoadingScreenModule;
@@ -15,7 +15,7 @@ import com.github.alexeybond.partly_solid_bicycle.game.systems.tagging.modules.T
 import com.github.alexeybond.partly_solid_bicycle.ioc.modules.Modules;
 import com.github.alexeybond.partly_solid_bicycle.music.modules.GlobalMusicPlayer;
 import com.github.alexeybond.partly_solid_bicycle.resource_management.modules.ResourceManagement;
-import com.github.oldnpluslusteam.old39_game.modules.StartupScreenModule;
+import com.github.oldnpluslusteam.old41_game.modules.StartupScreenModule;
 
 public class TheGame extends Application {
 	@Override
