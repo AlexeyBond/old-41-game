@@ -3,6 +3,7 @@ package com.github.oldnpluslusteam.old41_game.modules;
 import com.github.alexeybond.partly_solid_bicycle.ioc.IoC;
 import com.github.alexeybond.partly_solid_bicycle.ioc.IoCStrategy;
 import com.github.alexeybond.partly_solid_bicycle.ioc.modules.Module;
+import com.github.oldnpluslusteam.old41_game.components.NextPointer;
 import com.github.oldnpluslusteam.old41_game.components.mechanic.MountPointComponent;
 import com.github.oldnpluslusteam.old41_game.components.mechanic.MountableComponent;
 import com.github.oldnpluslusteam.old41_game.components.mechanic.MouseController;
@@ -32,6 +33,8 @@ public class StartupScreenModule implements Module {
         map.put("mmc", MouseController.Decl.class);
         map.put("mmount", MountableComponent.Decl.class);
         map.put("mmp", MountPointComponent.Decl.class);
+
+        map.put("np", NextPointer.Decl.class);
     }
 
     @Override

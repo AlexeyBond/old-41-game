@@ -1,5 +1,13 @@
 {
   "classes": {
+    "nextPointer": {
+      "components": {
+        "np": {},
+        "tag": {
+          "tag": "next_pointer"
+        }
+      }
+    },
     "camera": {
       "components": {
         "camera": {
