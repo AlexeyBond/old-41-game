@@ -1,198 +1,6 @@
 {
-  "classes": {
-    "camera": {
-      "components": {
-        "camera": {
-          "pass": "setup-main-camera",
-          "globalAlias": "mainCamera"
-        },
-        "tag": {
-          "tag": "camera"
-        }
-      },
-      "properties": {
-        "zoomFunction": ["fixed diagonal zoom function", "1300"],
-        "position": ["0", "0"]
-      }
-    },
-
-    "mountpoint": {
-      "components": {
-        "body": { "bodyType": "StaticBody" },
-        "circle fixture": { "radius": 10, "sensor": true },
-        "mmp": {},
-        "sprite": {
-          "sprite": "sprites/mountpoint",
-          "scale": 0.2,
-          "pass": "game-background"
-        }
-      }
-    },
-    "box": {
-      "components": {
-        "body": { "bodyType": "DynamicBody", "noRotation": true },
-        "box fixture": { "size": [50, 50], "density": 0.0001 },
-        "mmount": {}
-      }
-    },
-    "source-box-1": {
-      "inherit": ["box"],
-      "components": {
-        "sprite": {
-          "sprite": "sprites/source",
-          "scale": 0.55
-        },
-        "qem": {
-          "period": 5,
-          "quant": {
-            "components": {
-              "q": {
-                "velocity": [200, 0],
-
-                "frequency": 0.1,
-
-                "initialLength": 10,
-                "targetLength": 200
-              }
-            }
-          }
-        }
-      }
-    },
-    "turn-box": {
-      "inherit": ["box"],
-      "components": {
-        "sprite": {
-          "sprite": "sprites/turn",
-          "scale": 0.55
-        },
-        "qt": {
-          "points": [10, 10, -10, -10]
-        },
-        "qe": {
-          "type": "qe-turn"
-        }
-      }
-    },
-    "black-box": {
-      "inherit": ["box"],
-      "components": {
-        "sprite": {
-          "sprite": "sprites/black",
-          "scale": 0.55
-        },
-        "qt": {
-          "points": [10, 10, -10, -10]
-        },
-        "qe": {
-          "type": "qe-disp"
-        }
-      }
-    },
-    "target-box": {
-      "inherit": ["box"],
-      "components": {
-        "sprite": {
-          "sprite": "sprites/target-undone",
-          "scale": 0.55
-        },
-        "qt": {
-          "points": [10, 10, -10, -10]
-        },
-        "qe": {
-          "type": "qtgt"
-        }
-      }
-    }
-  },
+  "include": ["commons.json"],
   "entities": [
-    {
-      "components": {
-        "background loop": {
-          "pass": "game-background-loop",
-          "texture": "sprites/backloop.png"
-        }
-      }
-    },
-    {
-      "inherit": ["camera"],
-      "components": {
-        "physics debugger": {
-          "camera": "mainCamera"
-        },
-        "mmc": {
-          "tolerance": 10,
-          "frequency": 100,
-          "damping": 0,
-          "force": 100000
-        }
-      }
-    },
-    {
-      "components": {
-        "q": {
-          "type": "q",
-          "velocity": [80, 0],
-
-          "frequency": 0.1,
-
-          "initialLength": 100,
-          "targetLength": 200
-        }
-      }
-    },
-    {
-      "components": {
-        "qt": {
-          "points": [10, 10, -10, -10]
-        },
-        "qe": {
-          "type": "qe-turn"
-        }
-      },
-      "properties": {
-        "position": ["200", "0"]
-      }
-    },
-
-
-
-
-
-
-
-
-
-
-
-    {
-      "components": {
-        "body": { "bodyType": "StaticBody" },
-        "bottom": {
-          "type": "box fixture",
-          "size": [1000, 20],
-          "center": [0, -200]
-        },
-        "top": {
-          "type": "box fixture",
-          "size": [1000, 20],
-          "center": [0, 200]
-        },
-        "left": {
-          "type": "box fixture",
-          "size": [20, 1000],
-          "center": [-400, 0]
-        },
-        "right": {
-          "type": "box fixture",
-          "size": [10, 1000],
-          "center": [400, 0]
-        }
-      }
-    },
-
-
-
     {
       "inherit": ["mountpoint"],
       "properties": {
@@ -217,32 +25,58 @@
         "position": ["-300", "100"]
       }
     },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["100", "100"]
+      }
+    },
+    {
+      "inherit": ["border"],
+      "properties": {
+        "position": ["100", "0"]
+      }
+    },
+    {
+      "inherit": ["border"],
+      "properties": {
+        "position": ["0", "100"],
+        "rotation": ["90"]
+      }
+    },
+    {
+      "inherit": ["border"],
+      "properties": {
+        "position": ["200", "100"],
+        "rotation": ["90"]
+      }
+    },
 
     {
       "inherit": ["source-box-1"],
       "properties": {
-        "position": ["0", "0"]
+        "position": ["-300", "0"]
       }
     },
 
-    {
-      "inherit": ["turn-box"],
-      "properties": {
-        "position": ["0", "100"]
-      }
-    },
+//    {
+//      "inherit": ["turn-box"],
+//      "properties": {
+//        "position": ["0", "100"]
+//      }
+//    },
 
     {
       "inherit": ["black-box"],
       "properties": {
-        "position": ["0", "200"]
+        "position": ["-200", "100"]
       }
     },
 
     {
       "inherit": ["target-box"],
       "properties": {
-        "position": ["-100", "200"]
+        "position": ["100", "100"]
       }
     }
   ]

@@ -2,10 +2,12 @@ package com.github.oldnpluslusteam.old41_game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.github.alexeybond.partly_solid_bicycle.application.Layer;
 import com.github.alexeybond.partly_solid_bicycle.application.Screen;
 import com.github.alexeybond.partly_solid_bicycle.application.impl.DefaultScreen;
@@ -68,7 +70,13 @@ public class GameScreen extends DefaultScreen {
 
         final Label progressLabel = new Label("", skin);
         final ProgressBar progressBar = new ProgressBar(0, 1, 1, false, skin);
-        final TextButton button = new TextButton("Next", skin);
+//        final TextButton button = new TextButton("Next", skin);
+        final ImageButton button = new ImageButton(
+                new TextureRegionDrawable(
+                        IoC.<TextureRegion>resolve("get texture region", "sprites/done-button-o")),
+                new TextureRegionDrawable(
+                        IoC.<TextureRegion>resolve("get texture region", "sprites/done-button-h"))
+        );
 
         button.setDisabled(true);
         button.setVisible(false);
@@ -119,7 +127,7 @@ public class GameScreen extends DefaultScreen {
                 }
             });
         } catch (RuntimeException e) {
-            button.setText("Exit");
+//            button.setText("Exit");
             button.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
