@@ -1,0 +1,388 @@
+{
+  "include": ["commons.json"],
+  "entities": [
+    {
+      "inherit": ["border"],
+      "properties": {
+        "position": ["300", "80"],
+        "rotation": ["90"]
+      }
+    },
+    {
+      "inherit": ["border"],
+      "properties": {
+        "position": ["300", "-100"],
+        "rotation": ["90"]
+      }
+    },
+
+
+    {
+      "inherit": ["border"],
+      "properties": {
+        "position": ["100", "80"],
+        "rotation": ["90"]
+      }
+    },
+    {
+      "inherit": ["border-hard"],
+      "properties": {
+        "position": ["100", "-100"],
+        "rotation": ["90"]
+      }
+    },
+
+
+    {
+      "inherit": ["border"],
+      "properties": {
+        "position": ["-100", "80"],
+        "rotation": ["90"]
+      }
+    },
+    {
+      "inherit": ["border-hard"],
+      "properties": {
+        "position": ["-100", "-100"],
+        "rotation": ["90"]
+      }
+    },
+
+
+    {
+      "inherit": ["border"],
+      "properties": {
+        "position": ["-200", "80"],
+        "rotation": ["90"]
+      }
+    },
+    {
+      "inherit": ["border"],
+      "properties": {
+        "position": ["-200", "-100"],
+        "rotation": ["90"]
+      }
+    },
+
+    {
+      "inherit": ["border"],
+      "properties": {
+        "position": ["-200", "-10"]
+      }
+    },
+    {
+      "inherit": ["border"],
+      "properties": {
+        "position": ["-360", "-10"]
+      }
+    },
+
+
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["250", "-150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["150", "-150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["250", "-50"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["150", "-50"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["250", "150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["150", "150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["250", "50"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["150", "50"]
+      }
+    },
+
+    {
+      "inherit": ["turn-box"],
+      "properties": {"position": ["150", "-150"]}
+    },
+    {
+      "inherit": ["turn-box"],
+      "properties": {"position": ["250", "-150"]}
+    },
+    {
+      "inherit": ["turn-box"],
+      "properties": {"position": ["150", "-50"]}
+    },
+    {
+      "inherit": ["turn-box"],
+      "properties": {"position": ["250", "-50"]}
+    },
+    {
+      "inherit": ["source-box-2"],
+      "properties": {"position": ["150", "50"]}
+    },
+    {
+      "inherit": ["target-box"],
+      "properties": {"position": ["250", "50"]}
+    },
+    {
+      "inherit": ["target-box"],
+      "properties": {"position": ["150", "150"]}
+    },
+    {
+      "inherit": ["target-box"],
+      "properties": {"position": ["250", "150"]}
+    },
+
+
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["50", "-150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-50", "-150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["50", "-50"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-50", "-50"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["50", "150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-50", "150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["50", "50"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-50", "50"]
+      }
+    },
+
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["350", "-150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["350", "-50"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["350", "150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["350", "50"]
+      }
+    },
+
+    {
+      "inherit": ["turn-box"],
+      "properties": {
+        "position": ["350", "50"]
+      }
+    },
+    {
+      "inherit": ["target-box"],
+      "properties": {
+        "position": ["350", "-50"]
+      }
+    },
+    {
+      "inherit": ["turn-box"],
+      "properties": {
+        "position": ["350", "-150"]
+      }
+    },
+
+
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-150", "-150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-250", "-150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-150", "-50"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-250", "-50"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-150", "150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-250", "150"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-150", "50"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-250", "50"]
+      }
+    },
+
+    {
+      "inherit": ["turn-box"],
+      "properties": {
+        "position": ["-50", "-150"]
+      }
+    },
+    {
+      "inherit": ["turn-box"],
+      "properties": {
+        "position": ["50", "-150"]
+      }
+    },
+    {
+      "inherit": ["turn-box"],
+      "properties": {
+        "position": ["-50", "-50"]
+      }
+    },
+    {
+      "inherit": ["turn-box"],
+      "properties": {
+        "position": ["50", "-50"]
+      }
+    },
+    {
+      "inherit": ["target-box"],
+      "properties": {
+        "position": ["-50", "150"]
+      }
+    },
+    {
+      "inherit": ["target-box"],
+      "properties": {
+        "position": ["50", "150"]
+      }
+    },
+    {
+      "inherit": ["target-box"],
+      "properties": {
+        "position": ["-50", "50"]
+      }
+    },
+    {
+      "inherit": ["target-box"],
+      "properties": {
+        "position": ["50", "50"]
+      }
+    },
+
+    {
+      "inherit": ["target-box"],
+      "properties": {
+        "position": ["-150", "50"]
+      }
+    },
+    {
+      "inherit": ["target-box"],
+      "properties": {
+        "position": ["-150", "-50"]
+      }
+    },
+    {
+      "inherit": ["black-box"],
+      "properties": {
+        "position": ["-150", "-150"]
+      }
+    },
+
+    {
+      "inherit": ["turn-box"],
+      "properties": {
+        "position": ["-250", "-150"]
+      }
+    },
+    {
+      "inherit": ["turn-box"],
+      "properties": {
+        "position": ["-250", "50"]
+      }
+    }
+  ]
+}

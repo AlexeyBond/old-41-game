@@ -103,6 +103,30 @@
         }
       }
     },
+    "source-box-2": {
+      "inherit": ["box"],
+      "components": {
+        "sprite": {
+          "sprite": "sprites/source",
+          "scale": 0.55
+        },
+        "qem": {
+          "period": 2,
+          "quant": {
+            "components": {
+              "q": {
+                "velocity": [400, 0],
+
+                "frequency": 0.2,
+
+                "initialLength": 10,
+                "targetLength": 500
+              }
+            }
+          }
+        }
+      }
+    },
     "turn-box": {
       "inherit": ["box"],
       "components": {
