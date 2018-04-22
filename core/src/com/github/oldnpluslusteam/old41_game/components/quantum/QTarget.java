@@ -1,16 +1,21 @@
 package com.github.oldnpluslusteam.old41_game.components.quantum;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.github.alexeybond.partly_solid_bicycle.drawing.sprite.DefaultSpriteTemplate;
+import com.github.alexeybond.partly_solid_bicycle.drawing.sprite.SpriteTemplate;
 import com.github.alexeybond.partly_solid_bicycle.game.Component;
 import com.github.alexeybond.partly_solid_bicycle.game.Entity;
 import com.github.alexeybond.partly_solid_bicycle.game.Game;
 import com.github.alexeybond.partly_solid_bicycle.game.declarative.ComponentDeclaration;
 import com.github.alexeybond.partly_solid_bicycle.game.declarative.GameDeclaration;
 import com.github.alexeybond.partly_solid_bicycle.game.systems.timing.TimingSystem;
+import com.github.alexeybond.partly_solid_bicycle.ioc.IoC;
 import com.github.alexeybond.partly_solid_bicycle.util.event.Event;
 import com.github.alexeybond.partly_solid_bicycle.util.event.helpers.Subscription;
 import com.github.alexeybond.partly_solid_bicycle.util.event.props.FloatProperty;
 import com.github.alexeybond.partly_solid_bicycle.util.event.props.IntProperty;
 import com.github.alexeybond.partly_solid_bicycle.util.event.props.ObjectProperty;
+import com.github.oldnpluslusteam.old41_game.components.SwitchSpriteComponent;
 
 public class QTarget implements Component {
     private final float timeout;
@@ -18,12 +23,16 @@ public class QTarget implements Component {
     private TimingSystem timingSystem;
     private int cnt = 0;
 
+    private SpriteTemplate onTemplate, offTemplate;
+    private SwitchSpriteComponent switchSpriteComponent;
+
     private Subscription<ObjectProperty<Quant>> triggerSub = new Subscription<ObjectProperty<Quant>>() {
         @Override
         public boolean onTriggered(ObjectProperty<Quant> event) {
             ++cnt;
             if (cnt == 1) {
                 winDone.set(winDone.get() + 1);
+                switchSpriteComponent.setTemplate(onTemplate);
             }
 
             timingSystem.scheduleAt(
@@ -39,6 +48,7 @@ public class QTarget implements Component {
             --cnt;
             if (cnt == 0) {
                 winDone.set(winDone.get() - 1);
+                switchSpriteComponent.setTemplate(offTemplate);
             }
             return false;
         }
@@ -58,6 +68,22 @@ public class QTarget implements Component {
         timeoutSub.set(Event.makeEvent().create());
 
         winCondition.set(winCondition.get() + 1);
+
+        TextureRegion region = IoC.resolve("get texture region", "sprites/target-undone");
+        offTemplate = new DefaultSpriteTemplate(
+                region,
+                region.getRegionWidth() * 0.5f, region.getRegionHeight() * 0.5f,
+                1, 0
+        );
+        region = IoC.resolve("get texture region", "sprites/target-done");
+        onTemplate = new DefaultSpriteTemplate(
+                region,
+                region.getRegionWidth() * 0.5f, region.getRegionHeight() * 0.5f,
+                1, 0
+        );
+
+        switchSpriteComponent = entity.components()
+                .add("sprite", new SwitchSpriteComponent(offTemplate, 0.55f));
     }
 
     @Override

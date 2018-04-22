@@ -45,7 +45,7 @@
       }
     },
     {
-      "inherit": ["border"],
+      "inherit": ["border-hard"],
       "properties": {
         "position": ["200", "100"],
         "rotation": ["90"]

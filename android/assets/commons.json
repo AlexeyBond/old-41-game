@@ -31,6 +31,27 @@
       }
     },
 
+    "border-hard": {
+      "components": {
+        "sprite": {
+          "sprite": "sprites/border-hard",
+          "scale": 0.3
+        },
+        "body": {
+          "bodyType": "StaticBody"
+        },
+        "box fixture": {
+          "size": [150, 20]
+        },
+        "qt": {
+          "points": [-72, 0, 72, 0]
+        },
+        "qe": {
+          "type": "qe-disp"
+        }
+      }
+    },
+
     "mountpoint": {
       "components": {
         "body": { "bodyType": "StaticBody" },
@@ -107,10 +128,6 @@
     "target-box": {
       "inherit": ["box"],
       "components": {
-        "sprite": {
-          "sprite": "sprites/target-undone",
-          "scale": 0.55
-        },
         "qt": {
           "points": [10, 10, -10, -10]
         },
