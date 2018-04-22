@@ -32,13 +32,13 @@
       }
     },
     {
-      "inherit": ["border"],
+      "inherit": ["mountpoint"],
       "properties": {
-        "position": ["100", "0"]
+        "position": ["-300", "0"]
       }
     },
     {
-      "inherit": ["border"],
+      "inherit": ["border-hard"],
       "properties": {
         "position": ["0", "100"],
         "rotation": ["90"]
@@ -59,12 +59,12 @@
       }
     },
 
-//    {
-//      "inherit": ["turn-box"],
-//      "properties": {
-//        "position": ["0", "100"]
-//      }
-//    },
+    //    {
+    //      "inherit": ["turn-box"],
+    //      "properties": {
+    //        "position": ["0", "100"]
+    //      }
+    //    },
 
     {
       "inherit": ["black-box"],
@@ -83,7 +83,7 @@
     {
       "inherit": ["nextPointer"],
       "properties": {
-        "nextLevel": ["level01.json"]
+        "nextLevel": ["level02.json"]
       }
     }
   ]

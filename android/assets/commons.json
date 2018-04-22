@@ -140,7 +140,8 @@
           "points": [10, 10, -10, -10]
         },
         "qe": {
-          "type": "qtgt"
+          "type": "qtgt",
+          "timeout": 3
         }
       }
     }

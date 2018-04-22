@@ -29,7 +29,7 @@ import com.github.alexeybond.partly_solid_bicycle.util.parts.AParts;
 import com.github.oldnpluslusteam.old41_game.components.quantum.QuantumSystem;
 
 public class GameScreen extends DefaultScreen {
-    public static String INITIAL_LEVEL = "level0.json";
+    public static String INITIAL_LEVEL = "level04.json";
 
     private final String levelName;
 

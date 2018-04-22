@@ -32,13 +32,43 @@
       }
     },
     {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["100", "-100"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-300", "0"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-300", "-100"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-200", "-100"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-100", "-100"]
+      }
+    },
+    {
       "inherit": ["border"],
       "properties": {
         "position": ["100", "0"]
       }
     },
     {
-      "inherit": ["border"],
+      "inherit": ["border-hard"],
       "properties": {
         "position": ["0", "100"],
         "rotation": ["90"]
@@ -59,17 +89,10 @@
       }
     },
 
-//    {
-//      "inherit": ["turn-box"],
-//      "properties": {
-//        "position": ["0", "100"]
-//      }
-//    },
-
     {
-      "inherit": ["black-box"],
+      "inherit": ["turn-box"],
       "properties": {
-        "position": ["-200", "100"]
+        "position": ["-200", "0"]
       }
     },
 
@@ -79,11 +102,17 @@
         "position": ["100", "100"]
       }
     },
+    {
+      "inherit": ["target-box"],
+      "properties": {
+        "position": ["-200", "100"]
+      }
+    },
 
     {
       "inherit": ["nextPointer"],
       "properties": {
-        "nextLevel": ["level01.json"]
+        "nextLevel": ["level03.json"]
       }
     }
   ]

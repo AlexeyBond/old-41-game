@@ -32,13 +32,49 @@
       }
     },
     {
-      "inherit": ["border"],
+      "inherit": ["mountpoint"],
       "properties": {
-        "position": ["100", "0"]
+        "position": ["-300", "0"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["300", "0"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["300", "-100"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-300", "-100"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["-200", "-100"]
+      }
+    },
+    {
+      "inherit": ["mountpoint"],
+      "properties": {
+        "position": ["300", "100"]
       }
     },
     {
       "inherit": ["border"],
+      "properties": {
+        "position": ["-100", "50"]
+      }
+    },
+    {
+      "inherit": ["border-hard"],
       "properties": {
         "position": ["0", "100"],
         "rotation": ["90"]
@@ -46,6 +82,13 @@
     },
     {
       "inherit": ["border-hard"],
+      "properties": {
+        "position": ["100", "0"],
+        "rotation": ["0"]
+      }
+    },
+    {
+      "inherit": ["border"],
       "properties": {
         "position": ["200", "100"],
         "rotation": ["90"]
@@ -59,12 +102,24 @@
       }
     },
 
-//    {
-//      "inherit": ["turn-box"],
-//      "properties": {
-//        "position": ["0", "100"]
-//      }
-//    },
+    {
+      "inherit": ["turn-box"],
+      "properties": {
+        "position": ["-100", "150"]
+      }
+    },
+    {
+      "inherit": ["turn-box"],
+      "properties": {
+        "position": ["-120", "100"]
+      }
+    },
+    {
+      "inherit": ["target-box"],
+      "properties": {
+        "position": ["-80", "100"]
+      }
+    },
 
     {
       "inherit": ["black-box"],
@@ -83,7 +138,7 @@
     {
       "inherit": ["nextPointer"],
       "properties": {
-        "nextLevel": ["level01.json"]
+        "nextLevel": ["level04.json"]
       }
     }
   ]
